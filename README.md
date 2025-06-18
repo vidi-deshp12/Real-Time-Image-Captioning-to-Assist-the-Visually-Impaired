@@ -19,9 +19,11 @@ Techstack
 4. Audio: gTTS for text-to-speech conversion
 
 Dataset
+
 Fine-tuned on the VizWiz dataset to better handle real-world images captured by visually impaired users.
 
 System Architecture
+
 The following diagram explains the system flow from image capture to audio feedback.
 ![block_diagram](block_diagram.png)
 
