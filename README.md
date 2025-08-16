@@ -47,7 +47,7 @@ The following diagram explains the system flow from image capture to audio feedb
 The system successfully generates relevant captions in real-time and provides immediate audio feedback (latency ~ 20s) to the user.  
 Below are some example outputs:
 
-<img src="Nivea_lotion.jpg" width="200" height="400">
+<img src="Nivea_lotion.jpg" width="300" height="600">
 
 > **Generated Caption:**  
 > "NIVEA Body Milk Shea Smooth. A person is holding a bottle of Shea Butter. A person is holding a bottle of Shea Butter."
@@ -55,16 +55,45 @@ Below are some example outputs:
 
 
 
-<img src="green_tea.jpg" width="400">
+<img src="green_tea.jpg" width="300" height="600">
 
 > **Generated Caption:**  
 > "Lets stay fkt Lipton Green. A person is holding a green tea packet. A person is holding a green tea packet."
 
 
+<img src="ravioli.jpg" width="300" height="600">
+
+> **Generated Caption:**
+> "Mini Ravioli Beef Ravioli Meat. A person is holding a can of Ravioli Beef. A can of Ravioli Beef is on a counter."
+
+
+<img src="red_phone.jpg" width="300" height="600">
+
+> **Generated Caption:**
+> “A red coloured phone with a cracked screen and a cracked case. A red coloured phone with a cracked screen and a cracked case.”
+
+
+<img src="mamaearth_shampoo.jpg" width="300" height="600">
+
+> **Generated Caption:**
+> “Mamaearth Onion shampoo with Onion. A bottle of shampoo is on a counter. A bottle of shampoo is on a counter.”
+
+
+<img src="white_egg.jpg" width="300" height="600">
+
+> **Generated Caption:**
+> "A white egg laying on a wooden surface. A white egg laying on a wooden surface."
+
+
+<img src="microwave_oven.jpg" width="300" height="600">
+
+> **Generated Caption:**
+> "ntellocook. A white microwave is on top of a wooden table. A white microwave is on top of a wooden table."
+
 
 **Acknowledgements**
-1. CLIP-GPT2
+This project was made possible thanks to the following resources and tools:  
 
-2. VizWiz Dataset
-
-3. gTTS: Google Text-to-Speech
+- [CLIP-GPT2](https://github.com/rmokady/CLIP_prefix_caption) for vision-language caption generation  
+- [VizWiz Dataset](https://vizwiz.org/tasks-and-datasets/image-captioning/) for fine-tuning  
+- [gTTS (Google Text-to-Speech)](https://pypi.org/project/gTTS/) for converting captions to audio feedback  
