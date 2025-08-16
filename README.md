@@ -47,10 +47,12 @@ The following diagram explains the system flow from image capture to audio feedb
 The system successfully generates relevant captions in real-time and provides immediate audio feedback (latency ~ 20s) to the user.  
 Below are some example outputs:
 
-<img src="Nivea_lotion.jpg" width="400">
+<img src="Nivea_lotion.jpg" width="200" height="400">
 
 > **Generated Caption:**  
 > "NIVEA Body Milk Shea Smooth. A person is holding a bottle of Shea Butter. A person is holding a bottle of Shea Butter."
+
+
 
 
 <img src="green_tea.jpg" width="400">
