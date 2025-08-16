@@ -92,6 +92,7 @@ Below are some example outputs:
 
 
 **Acknowledgements**
+
 This project was made possible thanks to the following resources and tools:  
 
 - [CLIP-GPT2](https://github.com/rmokady/CLIP_prefix_caption) for vision-language caption generation  
