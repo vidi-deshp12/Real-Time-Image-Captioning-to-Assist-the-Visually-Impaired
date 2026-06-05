@@ -47,7 +47,7 @@ The following diagram explains the system flow from image capture to audio feedb
 The system successfully generates relevant captions in real-time and provides immediate audio feedback (latency ~ 20s) to the user.  
 Below are some example outputs:
 
-<img src="Nivea_lotion.jpg" width="300" height="600">
+<img src="images/Nivea_lotion.jpg" width="300" height="600">
 
 > **Generated Caption:**  
 > "NIVEA Body Milk Shea Smooth. A person is holding a bottle of Shea Butter. A person is holding a bottle of Shea Butter."
@@ -55,46 +55,77 @@ Below are some example outputs:
 
 
 
-<img src="green_tea.jpg" width="300" height="600">
+<img src="images/green_tea.jpg" width="300" height="600">
 
 > **Generated Caption:**  
 > "Lets stay fkt Lipton Green. A person is holding a green tea packet. A person is holding a green tea packet."
 
 
-<img src="ravioli.jpg" width="300" height="600">
+<img src="images/ravioli.jpg" width="300" height="600">
 
 > **Generated Caption:**
 > "Mini Ravioli Beef Ravioli Meat. A person is holding a can of Ravioli Beef. A can of Ravioli Beef is on a counter."
 
 
-<img src="red_phone.jpg" width="300" height="600">
+<img src="images/red_phone.jpg" width="300" height="600">
 
 > **Generated Caption:**
 > “A red coloured phone with a cracked screen and a cracked case. A red coloured phone with a cracked screen and a cracked case.”
 
 
-<img src="mamaearth_shampoo.jpg" width="300" height="600">
+<img src="images/mamaearth_shampoo.jpg" width="300" height="600">
 
 > **Generated Caption:**
 > “Mamaearth Onion shampoo with Onion. A bottle of shampoo is on a counter. A bottle of shampoo is on a counter.”
 
 
-<img src="white_egg.jpg" width="300" height="600">
+<img src="images/white_egg.jpg" width="300" height="600">
 
 > **Generated Caption:**
 > "A white egg laying on a wooden surface. A white egg laying on a wooden surface."
 
 
-<img src="microwave_oven.jpg" width="300" height="600">
+<img src="images/microwave_oven.jpg" width="300" height="600">
 
 > **Generated Caption:**
 > "ntellocook. A white microwave is on top of a wooden table. A white microwave is on top of a wooden table."
 
 
+## Experimental OCR-Augmented Training
+
+Beyond the deployed system, we explored conditioning the captioning model on OCR tokens during training. The motivation was to reduce the train–test mismatch introduced by the original pipeline, where OCR was only used at inference time.
+
+### Hypothesis
+
+If OCR text were provided during training alongside image features, the model could learn stronger associations between textual cues in the image and the generated caption. So:
+
+
+[CLIP Prefix (10)] + [OCR Tokens (≤10)] + [Caption Tokens (≤50)]
+
+### Outcome
+
+The OCR-conditioned model produced lower-quality captions than the baseline model. Common failure modes included:
+
+- Repetition during generation
+- Copying noisy OCR strings into the caption
+- Reduced caption fluency
+- Occasional improvements when OCR contained highly informative text
+
+### Possible Causes
+
+- Noisy OCR extracted from low-quality VizWiz images
+- Attention allocated to irrelevant OCR tokens
+- Increased prefix length compared to the original ClipCap design
+- Limited availability of clean OCR-caption supervision
+
+### Key Observation
+
+Although OCR-conditioned training underperformed, lightweight OCR augmentation at inference time remained useful and often improved recognition of text-heavy objects such as product packaging, appliance displays, and thermostats. This suggests that OCR was more effective as a controlled inference-time signal than as an additional train-time conditioning input under the available caption supervision.
+
 **Acknowledgements**
 
 This project was made possible thanks to the following resources and tools:  
 
-- [CLIP-GPT2](https://github.com/rmokady/CLIP_prefix_caption) for vision-language caption generation  
+- [ClipCap](https://github.com/rmokady/CLIP_prefix_caption) for vision-language caption generation  
 - [VizWiz Dataset](https://vizwiz.org/tasks-and-datasets/image-captioning/) for fine-tuning  
 - [gTTS (Google Text-to-Speech)](https://pypi.org/project/gTTS/) for converting captions to audio feedback  
