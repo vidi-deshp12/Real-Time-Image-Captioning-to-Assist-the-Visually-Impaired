@@ -44,7 +44,7 @@ The following diagram explains the system flow from image capture to audio feedb
 
 **Results**
 
-The system successfully generates relevant captions in real-time and provides immediate audio feedback (latency ~ 20s) to the user.  
+The system successfully generates relevant captions in real-time and provides immediate audio feedback (latency < 5s) to the user.  
 Below are some example outputs:
 
 <img src="images/Nivea_lotion.jpg" width="300" height="600">
