@@ -2,7 +2,7 @@
 
 This project implements a real-time image captioning system designed to help visually impaired individuals better understand their surroundings. The system captures images via a smartphone app, processes them through a fine-tuned CLIP–GPT2 captioning model, and delivers immediate audio descriptions of the scene.
 
-**Features**
+## Features
 1. Real-time image capture via a mobile app
 
 2. Image caption generation using a fine-tuned CLIP-GPT2 model hosted on HuggingFace
@@ -11,7 +11,7 @@ This project implements a real-time image captioning system designed to help vis
    
 4. Optimized for real-world images
 
-**Techstack**
+## Techstack
 1. Frontend: React Native (react-native-vision-camera for image capture)
 
 2. Backend: Flask (Python)
@@ -22,12 +22,11 @@ This project implements a real-time image captioning system designed to help vis
 
 5. Audio: gTTS for text-to-speech conversion
 
-**Dataset**
+## Dataset
 
-VizWiz: A dataset of images taken by visually impaired users, used for fine-tuning the captioning model.
-Focused on robustness to low-light, blurred, and text-containing images.
+[VizWiz](https://vizwiz.org/tasks-and-datasets/image-captioning/): images taken by blind photographers with five human-written captions each. Training used 40,000 caption–image pairs. The dataset's real-world noise (blur, dark frames, extreme angles) makes it more representative of actual use than standard captioning benchmarks.
 
-**System Architecture**
+## System Architecture
 
 The following diagram explains the system flow from image capture to audio feedback.
 ![block_diagram](block_diagram.png)
@@ -42,7 +41,31 @@ The following diagram explains the system flow from image capture to audio feedb
 
 5. Audio played back on the smartphone
 
-**Results**
+## Quantitative Evaluation
+
+Evaluated on 300 randomly sampled VizWiz validation images (seed 0) using standard image captioning metrics.
+
+| Metric | Score |
+|--------|-------|
+| BLEU-1 | 0.5068 |
+| BLEU-2 | 0.3627 |
+| BLEU-3 | 0.2761 |
+| BLEU-4 | 0.2273 |
+| ROUGE-L | 0.3558 |
+| **CIDEr** | **0.9615** |
+| Repetition rate | 0.017 |
+| OCR recall | 0.912 |
+
+Evaluation script: `scripts/evaluate.py`
+
+CIDEr (0.9615) is the most caption-specific metric, measuring n-gram similarity weighted 
+by informativeness against the five human-written VizWiz reference captions per image, 
+a score of 0.96 indicates strong alignment with human descriptions. 
+Repetition rate of 
+0.017 confirms the model rarely loops or duplicates phrases, and OCR recall of 0.912 
+means detected text appears in the generated caption in over 91% of cases.
+
+## Qualitative Results
 
 The system successfully generates relevant captions in real-time and provides immediate audio feedback (latency < 5s) to the user.  
 Below are some example outputs:
@@ -122,10 +145,11 @@ The OCR-conditioned model produced lower-quality captions than the baseline mode
 
 Although OCR-conditioned training underperformed, lightweight OCR augmentation at inference time remained useful and often improved recognition of text-heavy objects such as product packaging, appliance displays, and thermostats. This suggests that OCR was more effective as a controlled inference-time signal than as an additional train-time conditioning input under the available caption supervision.
 
-**Acknowledgements**
+## Acknowledgements
 
 This project was made possible thanks to the following resources and tools:  
 
 - [ClipCap](https://github.com/rmokady/CLIP_prefix_caption) for vision-language caption generation  
 - [VizWiz Dataset](https://vizwiz.org/tasks-and-datasets/image-captioning/) for fine-tuning  
-- [gTTS (Google Text-to-Speech)](https://pypi.org/project/gTTS/) for converting captions to audio feedback  
+- [gTTS (Google Text-to-Speech)](https://pypi.org/project/gTTS/) for converting captions to audio feedback
+- [EasyOCR](https://github.com/JaidedAI/EasyOCR)
