@@ -53,7 +53,6 @@ Evaluated on 300 randomly sampled VizWiz validation images (seed 0) using standa
 | BLEU-4 | 0.2273 |
 | ROUGE-L | 0.3558 |
 | **CIDEr** | **0.9615** |
-| Repetition rate | 0.017 |
 | OCR recall | 0.912 |
 
 Evaluation script: `scripts/evaluate.py`
@@ -61,8 +60,7 @@ Evaluation script: `scripts/evaluate.py`
 CIDEr (0.9615) is the most caption-specific metric, measuring n-gram similarity weighted 
 by informativeness against the five human-written VizWiz reference captions per image, 
 a score of 0.96 indicates strong alignment with human descriptions. 
-Repetition rate of 
-0.017 confirms the model rarely loops or duplicates phrases, and OCR recall of 0.912 
+OCR recall of 0.912 
 means detected text appears in the generated caption in over 91% of cases.
 
 ## Qualitative Results
