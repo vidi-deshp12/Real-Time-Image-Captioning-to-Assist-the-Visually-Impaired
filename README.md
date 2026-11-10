@@ -24,7 +24,7 @@ This project implements a real-time image captioning system designed to help vis
 
 ## Dataset
 
-[VizWiz](https://vizwiz.org/tasks-and-datasets/image-captioning/): images taken by blind photographers with five human-written captions each. Training used 40,000 caption–image pairs. The dataset's real-world noise (blur, dark frames, extreme angles) makes it more representative of actual use than standard captioning benchmarks.
+[VizWiz](https://vizwiz.org/tasks-and-datasets/image-captioning/): images taken by blind photographers with five human-written captions each. Training used 20K caption–image pairs. The dataset's real-world noise (blur, dark frames, extreme angles) makes it more representative of actual use than standard captioning benchmarks.
 
 ## System Architecture
 
